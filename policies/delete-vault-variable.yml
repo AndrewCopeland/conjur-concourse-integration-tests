@@ -1,0 +1,2 @@
+- !delete
+  record: !variable vaultName/api_key

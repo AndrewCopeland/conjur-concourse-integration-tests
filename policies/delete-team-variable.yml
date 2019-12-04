@@ -1,0 +1,2 @@
+- !delete
+  record: !variable concourse/testTeam/api_key

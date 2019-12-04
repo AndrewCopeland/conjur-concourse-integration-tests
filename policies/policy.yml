@@ -1,0 +1,13 @@
+- !host concourse
+
+- !variable concourse/testTeam/api_key
+- !variable concourse/testTeam/test-pipeline/api_key
+- !variable vaultName/api_key
+
+- !permit
+  role: !host concourse
+  privilege: [ read, execute ]
+  resources:
+  - !variable concourse/testTeam/api_key
+  - !variable concourse/testTeam/test-pipeline/api_key
+  - !variable vaultName/api_key
