@@ -8,8 +8,8 @@ function conjur_authenticate {
 
 function delete_variable {
 	variable_name=$1
-	curl -H "$header" -X PATCH -d "$(< policies/delete-$variable_name-variable.yml)" -s -k https://conjur-master/policies/conjur/policy/root
-	echo ""
+	echo "deleting variable: $variable_name"
+	output=$(curl -H "$header" -X PATCH -d "$(< policies/delete-$variable_name-variable.yml)" -s -k https://conjur-master/policies/conjur/policy/root)
 }
 
 function append_policy {

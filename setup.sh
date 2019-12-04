@@ -30,7 +30,7 @@ cd concourse
 yarn install
 yarn build
 docker-compose up --build -d
-sleep 10
+sleep 20
 cd ..
 
 
