@@ -1,7 +1,7 @@
 # conjur-concourse-integration-tests
 conjur concourse integration setup and integration tests
 
-## Setting up the environment run
+## Setting up the environment
 ```
 $ ./setup.sh
 ```
