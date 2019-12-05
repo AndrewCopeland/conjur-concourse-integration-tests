@@ -53,9 +53,10 @@ cd ..
 
 
 echo "configure concourse"
-# TODO: install fly
-fly --target test login --concourse-url http://127.0.0.1:8080 -u test -p test
-fly -t test set-team --team-name testTeam --local-user test --non-interactive
-fly -t test login --concourse-url http://127.0.0.1:8080 -n testTeam -u test -p test
-fly -t test set-pipeline -p test-pipeline -c $(pwd)/pipelines/pipeline.yml -n
-fly -t test unpause-pipeline -p test-pipeline
+wget "http://localhost:8080/api/v1/cli?arch=amd64&platform=linux"
+chmod +x ./fly
+./fly --target test login --concourse-url http://127.0.0.1:8080 -u test -p test
+./fly -t test set-team --team-name testTeam --local-user test --non-interactive
+./fly -t test login --concourse-url http://127.0.0.1:8080 -n testTeam -u test -p test
+./fly -t test set-pipeline -p test-pipeline -c $(pwd)/pipelines/pipeline.yml -n
+./fly -t test unpause-pipeline -p test-pipeline

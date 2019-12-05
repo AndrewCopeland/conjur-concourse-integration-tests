@@ -6,3 +6,4 @@ docker-compose down
 
 rm -rf ./concourse
 rm conjur-conjur.pem
+rm ./fly
