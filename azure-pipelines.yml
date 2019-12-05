@@ -10,6 +10,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- script: ifconfig
+  displayName: get local ip 
+
 - script: bash ./setup.sh
   displayName: 'Setup the conjur and concourse'
 
