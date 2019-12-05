@@ -7,6 +7,11 @@ fi
 
 echo "getting ip address"
 ip_address=$(ifconfig "$IP_INTERFACE" | grep inet | tail -n 1 | awk '{print $2}')
+if [[ "$ip_address" == "" ]]; then
+  echo "ERROR: Failed to get ip address"
+  exit 1
+fi
+
 
 echo "download & install conjur"
 docker-compose up -d
