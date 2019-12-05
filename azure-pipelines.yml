@@ -10,8 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: ifconfig
-  displayName: get local ip 
+- script: curl -s -H "Metadata:true" 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://management.azure.com/'
+  displayName: curl metadata url
 
 - script: bash -x ./setup.sh eth0 ubuntu
   displayName: 'Setup the conjur and concourse'
