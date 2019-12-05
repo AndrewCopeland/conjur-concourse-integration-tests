@@ -13,7 +13,7 @@ steps:
 - script: ifconfig
   displayName: get local ip 
 
-- script: bash ./setup.sh
+- script: bash ./setup.sh eth0
   displayName: 'Setup the conjur and concourse'
 
 - script: bash ./test.sh
