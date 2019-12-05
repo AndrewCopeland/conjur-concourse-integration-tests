@@ -1,6 +1,10 @@
 source config.sh
 source utils.sh
 
+if [[ "$1" != "" ]]; then
+  IP_INTERFACE=$1
+fi
+
 echo "getting ip address"
 ip_address=$(ifconfig "$IP_INTERFACE" | grep inet | tail -n 1 | awk '{print $2}')
 
