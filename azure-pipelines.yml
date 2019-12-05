@@ -10,8 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: bash ./setup.sh
+  displayName: 'Setup the conjur and concourse instance'
 
 - script: ls
   displayName: 'ls directory'
