@@ -21,8 +21,8 @@ announce "#--> Fetch from non-existent variables"
 delete_variable team
 delete_variable pipeline
 delete_variable vault
-fly -t test trigger-job -j test-pipeline/job-conjur-api-key
-fly -t test watch -j test-pipeline/job-conjur-api-key
+./fly -t test trigger-job -j test-pipeline/job-conjur-api-key
+./fly -t test watch -j test-pipeline/job-conjur-api-key
 output=$(fly -t test watch -j test-pipeline/job-conjur-api-key)
 if [[ "$output" != *"undefined vars: api_key"* ]]; then 
   echo "ERROR: Found api_key and it should not have been found"
@@ -35,8 +35,8 @@ append_policy root policy.yml
 set_variable "concourse/testTeam/api_key" "$API_KEY_TEAM"
 delete_variable pipeline
 delete_variable vault
-fly -t test trigger-job -j test-pipeline/job-conjur-api-key
-fly -t test watch -j test-pipeline/job-conjur-api-key
+./fly -t test trigger-job -j test-pipeline/job-conjur-api-key
+./fly -t test watch -j test-pipeline/job-conjur-api-key
 output=$(fly -t test watch -j test-pipeline/job-conjur-api-key)
 fetched_api_key=$(echo "$output" | grep "API_KEY=$API_KEY_TEAM")
 if [[ "$fetched_api_key" == "" ]]; then
@@ -49,8 +49,8 @@ announce "#---> Fetch from pipeline variable"
 append_policy root policy.yml
 set_variable "concourse/testTeam/test-pipeline/api_key" "$API_KEY_PIPELINE"
 delete_variable vault
-fly -t test trigger-job -j test-pipeline/job-conjur-api-key
-fly -t test watch -j test-pipeline/job-conjur-api-key
+./fly -t test trigger-job -j test-pipeline/job-conjur-api-key
+./fly -t test watch -j test-pipeline/job-conjur-api-key
 output=$(fly -t test watch -j test-pipeline/job-conjur-api-key)
 fetched_api_key=$(echo "$output" | grep "API_KEY=$API_KEY_PIPELINE")
 if [[ "$fetched_api_key" == "" ]]; then
@@ -64,8 +64,8 @@ append_policy root policy.yml
 set_variable "vaultName/api_key" "$API_KEY_VAULT"
 delete_variable team
 delete_variable pipeline
-fly -t test trigger-job -j test-pipeline/job-conjur-api-key
-fly -t test watch -j test-pipeline/job-conjur-api-key
+./fly -t test trigger-job -j test-pipeline/job-conjur-api-key
+./fly -t test watch -j test-pipeline/job-conjur-api-key
 output=$(fly -t test watch -j test-pipeline/job-conjur-api-key)
 fetched_api_key=$(echo "$output" | grep "API_KEY=$API_KEY_VAULT")
 if [[ "$fetched_api_key" == "" ]]; then
@@ -75,8 +75,8 @@ fi
 
 announce "#---> Fetch while conjur is down"
 docker-compose stop
-fly -t test trigger-job -j test-pipeline/job-conjur-api-key
-fly -t test watch -j test-pipeline/job-conjur-api-key
+./fly -t test trigger-job -j test-pipeline/job-conjur-api-key
+./fly -t test watch -j test-pipeline/job-conjur-api-key
 output=$(fly -t test watch -j test-pipeline/job-conjur-api-key)
 output=$(fly -t test watch -j test-pipeline/job-conjur-api-key)
 docker-compose up -d
