@@ -1,13 +1,7 @@
 # Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'conjur-concourse-identity'
-    scriptType: 'ps'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az'
-    arguments: 'account get-access-token'
+
 
 trigger:
 - master
@@ -16,6 +10,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'conjur-concourse-identity'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az'
+    arguments: 'account get-access-token'
+
 - script: curl -v -H "Metadata:true" 'http://169.254.169.254/metadata/identity/oauth2/token'
   displayName: curl metadata url
 
