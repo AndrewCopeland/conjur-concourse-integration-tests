@@ -10,15 +10,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'conjur-concourse-identity'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az account get-access-token'
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'conjur-concourse-identity'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'az account get-access-token'
 
-- script: curl -v -H "Metadata:true" 'http://169.254.169.254/metadata/identity/oauth2/token'
-  displayName: curl metadata url
+# - script: curl -v -H "Metadata:true" 'http://169.254.169.254/metadata/identity/oauth2/token'
+#   displayName: curl metadata url
 
 - script: bash -x ./setup.sh eth0 ubuntu
   displayName: 'Setup the conjur and concourse'
