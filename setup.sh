@@ -1,6 +1,8 @@
 source config.sh
 source utils.sh
 
+docker network create conjur || true
+
 if [[ "$1" != "" ]]; then
   IP_INTERFACE=$1
 fi
