@@ -13,8 +13,6 @@ services:
   web:
     build: .
     image: concourse/concourse:local
-    extra_hosts:
-      conjur-master: {{ HOST_IP }}
     volumes:
     - .:/src
     - ../conjur-conjur.pem:/conjur-conjur.pem
@@ -59,3 +57,8 @@ services:
       # so we can reach Garden/Baggageclaim for debugging
       CONCOURSE_BIND_IP: 0.0.0.0
       CONCOURSE_BAGGAGECLAIM_BIND_IP: 0.0.0.0
+
+networks:
+  default:
+    external:
+      name: conjur

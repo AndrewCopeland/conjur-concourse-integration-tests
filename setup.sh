@@ -53,7 +53,13 @@ cd ..
 
 
 echo "configure concourse"
-wget "http://localhost:8080/api/v1/cli?arch=amd64&platform=linux" -O fly
+
+type="linux"
+if [[ "$2" == "mac" ]]; then
+  type="darwin"
+fi
+
+wget "http://localhost:8080/api/v1/cli?arch=amd64&platform=$type" -O fly
 chmod +x ./fly
 ./fly --target test login --concourse-url http://127.0.0.1:8080 -u test -p test
 ./fly -t test set-team --team-name testTeam --local-user test --non-interactive
