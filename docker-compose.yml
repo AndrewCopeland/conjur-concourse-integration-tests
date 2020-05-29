@@ -1,7 +1,7 @@
 version: '2'
 services:
   conjur:
-    image: captainfluffytoes/dap:11.1
+    image: captainfluffytoes/dap:11.4.0
     container_name: conjur-master
     restart: always 
     security_opt:
