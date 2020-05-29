@@ -42,7 +42,7 @@ if [ "$api_key" == "{}" ]; then
 fi
 
 echo "download & run concourse"
-git clone --single-branch --branch conjur-credential-manager https://github.com/cyberark-bizdev/concourse
+git clone --single-branch --branch "${GIT_BRANCH}" "${GIT_URL}"
 sed "s/{{ API_KEY }}/$api_key/g" docker-compose-concourse.yml | sed "s/{{ HOST_IP }}/$ip_address/g" > concourse/docker-compose.yml
 
 cd concourse
@@ -61,7 +61,7 @@ if [[ "$2" == "mac" ]]; then
   type="darwin"
 fi
 
-wget "http://localhost:8080/api/v1/cli?arch=amd64&platform=$type" -O fly
+curl "http://localhost:8080/api/v1/cli?arch=amd64&platform=$type" -o fly
 chmod +x ./fly
 ./fly --target test login --concourse-url http://127.0.0.1:8080 -u test -p test
 ./fly -t test set-team --team-name testTeam --local-user test --non-interactive
